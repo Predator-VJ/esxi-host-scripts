@@ -76,7 +76,7 @@ Connect-VIServer -Server <esxi-host-ip-or-fqdn>
 
 <div align="center">
 
-**Vikas Joshi** — IT SysAdmin | VMware ESXi+26 vCenter Engineer
+**Vikas Joshi** — IT SysAdmin | VMware ESXi & vCenter Engineer
 
 [![GitHub](https://img.shields.io/badge/GitHub-Predator--VJ-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Predator-VJ)
 
