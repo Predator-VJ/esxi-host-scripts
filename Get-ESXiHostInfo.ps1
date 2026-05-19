@@ -36,7 +36,7 @@ try {
         @{N='MemoryGB';E={[math]::Round($_.MemoryTotalGB,0)}},
         @{N='ESXiVersion';E={$_.Version}},
         @{N='Build';E={$_.Build}},
-        @{N='UptimeDays';E={[math]::Round(($_.ExtensionData.Runtime.BootTime | ForEach-Object { (Get-Date) - $_ }).TotalDays,1)}},
+        @{N='UptimeDays';E={[math]::Round(((Get-Date) - $_.ExtensionData.Runtime.BootTime).TotalDays,1)}},
         ConnectionState
 
     $hosts | Format-Table -AutoSize
