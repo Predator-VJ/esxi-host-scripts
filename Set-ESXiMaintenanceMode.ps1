@@ -46,27 +46,27 @@ try {
         $esxiHosts = Get-VMHost -Name $HostName -ErrorAction Stop
     }
 
-    foreach ($host in $esxiHosts) {
+    foreach ($esxiHost in $esxiHosts) {
         if ($Action -eq 'Enter') {
-            if ($host.ConnectionState -ne 'Maintenance') {
-                Write-Host "Entering maintenance mode: $($host.Name)" -ForegroundColor Yellow
+            if ($esxiHost.ConnectionState -ne 'Maintenance') {
+                Write-Host "Entering maintenance mode: $($esxiHost.Name)" -ForegroundColor Yellow
                 if ($Evacuate) {
-                    Set-VMHost -VMHost $host -State Maintenance -Evacuate -Confirm:$false
+                    Set-VMHost -VMHost $esxiHost -State Maintenance -Evacuate -Confirm:$false
                 } else {
-                    Set-VMHost -VMHost $host -State Maintenance -Confirm:$false
+                    Set-VMHost -VMHost $esxiHost -State Maintenance -Confirm:$false
                 }
-                Write-Host "$($host.Name) is now in maintenance mode." -ForegroundColor Green
+                Write-Host "$($esxiHost.Name) is now in maintenance mode." -ForegroundColor Green
             } else {
-                Write-Host "$($host.Name) is already in maintenance mode." -ForegroundColor Gray
+                Write-Host "$($esxiHost.Name) is already in maintenance mode." -ForegroundColor Gray
             }
         }
         elseif ($Action -eq 'Exit') {
-            if ($host.ConnectionState -eq 'Maintenance') {
-                Write-Host "Exiting maintenance mode: $($host.Name)" -ForegroundColor Cyan
-                Set-VMHost -VMHost $host -State Connected -Confirm:$false
-                Write-Host "$($host.Name) is back online." -ForegroundColor Green
+            if ($esxiHost.ConnectionState -eq 'Maintenance') {
+                Write-Host "Exiting maintenance mode: $($esxiHost.Name)" -ForegroundColor Cyan
+                Set-VMHost -VMHost $esxiHost -State Connected -Confirm:$false
+                Write-Host "$($esxiHost.Name) is back online." -ForegroundColor Green
             } else {
-                Write-Host "$($host.Name) is not in maintenance mode." -ForegroundColor Gray
+                Write-Host "$($esxiHost.Name) is not in maintenance mode." -ForegroundColor Gray
             }
         }
     }
